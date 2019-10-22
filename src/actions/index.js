@@ -14,7 +14,10 @@ import {
   FAIL_SEARCH_PLACE,
   INITIALIZE_SEARCHED_PLACE,
   PLACE_DETAILS,
-  PLACE_DETAILS_ERROR
+  PLACE_DETAILS_ERROR,
+  GET_COMMENTS,
+  GET_COMMENTS_ERROR,
+  SAVE_AVG_SCORE
 } from "../constants/actionTypes";
 
 export const signUp = data => ({
@@ -92,5 +95,20 @@ export const placeDetails = data => ({
 
 export const placeDetailsError = data => ({
   type: PLACE_DETAILS_ERROR,
+  data
+});
+
+export const saveComments = data => ({
+  type: GET_COMMENTS,
+  data
+});
+
+export const commentErrorMsg = data => ({
+  type: GET_COMMENTS_ERROR,
+  data
+});
+
+export const saveScore = data => ({
+  type: SAVE_AVG_SCORE,
   data
 })

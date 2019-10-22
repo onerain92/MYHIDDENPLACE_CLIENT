@@ -103,3 +103,26 @@ export const getPlaceDetails = placeId => {
       return err.response.data;
     });
 };
+
+export const getComment = placeId => {
+  return api
+    .get(`/comment/${placeId}`)
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+};
+
+export const uploadComment = (placeId, text, score) => {
+  return api.post("/comment/register", { placeId, text, score }).then(res => {
+    return res.data;
+  });
+};
+
+export const uploadFavoritePlace = placeId => {
+  return api.put("/user/favorite", { placeId }).then(res => {
+    console.log("api에서 즐겨찾기 대답 확인: ", res.data);
+  });
+};

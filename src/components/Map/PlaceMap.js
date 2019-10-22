@@ -17,6 +17,12 @@ class PlaceMap extends Component {
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const propsChange =
+      this.props.location.coordinates !== nextProps.location.coordinates;
+    return propsChange;
+  }
+
   handleMarkerClick() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -37,9 +43,11 @@ class PlaceMap extends Component {
           position={{ lat: lat, lng: lng }}
           onClick={this.handleMarkerClick}
         >
-          {this.state.isOpen && <InfoWindow onCloseClick={this.handleMarkerClick}>
-            <div>{this.props.address}</div>
-          </InfoWindow>}
+          {this.state.isOpen && (
+            <InfoWindow onCloseClick={this.handleMarkerClick}>
+              <div>{this.props.address}</div>
+            </InfoWindow>
+          )}
         </Marker>
       </GoogleMap>
     ));

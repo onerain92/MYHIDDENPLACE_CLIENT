@@ -15,7 +15,10 @@ import {
   INITIALIZE_SEARCHED_PLACE,
   PLACE_DETAILS,
   PLACE_DETAILS_ERROR,
-  FAIL_SEARCH_PLACE
+  FAIL_SEARCH_PLACE,
+  GET_COMMENTS,
+  GET_COMMENTS_ERROR,
+  SAVE_AVG_SCORE
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -27,6 +30,8 @@ const initialState = {
       coordinates: null
     }
   },
+  comments: [],
+  avgScore: 0,
   isAuthenticated: false,
   isSearched: false,
   signinErrorMsg: null,
@@ -35,7 +40,8 @@ const initialState = {
   signupErrorMsg: null,
   uploadPlaceMsg: null,
   uploadPlaceErrorMsg: null,
-  placeDetailsErrorMsg: null
+  placeDetailsErrorMsg: null,
+  commentErrorMsg:null
 };
 
 function signupUserReducer(state = initialState.signupSuccessMsg, action) {
@@ -159,10 +165,46 @@ function placeDetailsReducer(state = initialState.placeDetails, action) {
   }
 }
 
-function placeDetailsErrorMsgReducer(state = initialState.placeDetailsErrorMsg, action) {
+function placeDetailsErrorMsgReducer(
+  state = initialState.placeDetailsErrorMsg,
+  action
+) {
   switch (action.type) {
     case PLACE_DETAILS_ERROR:
       return action.data;
+    default:
+      return state;
+  }
+}
+
+function commentsReducer(state = initialState.comments, action) {
+  switch (action.type) {
+    case GET_COMMENTS:
+      return action.data;
+    case INITIALIZE_MSG:
+      return [];
+    default:
+      return state;
+  }
+}
+
+function commentErrorMsgReducer(state = initialState.commentErrorMsg, action) {
+  switch (action.type) {
+    case GET_COMMENTS_ERROR:
+      return action.data;
+    case INITIALIZE_MSG:
+      return null;
+    default:
+      return state;
+  }
+}
+
+function avgScoreReducer(state = initialState.avgScore, action) {
+  switch (action.type) {
+    case SAVE_AVG_SCORE:
+      return action.data;
+    case INITIALIZE_MSG:
+      return 0;
     default:
       return state;
   }
@@ -182,6 +224,9 @@ const myhiddenplace = combineReducers({
   failSearchMsg: failSearchMsgReducer,
   placeDetails: placeDetailsReducer,
   placeDetailsErrorMsg: placeDetailsErrorMsgReducer,
+  comments: commentsReducer,
+  commentErrorMsg: commentErrorMsgReducer,
+  avgScore: avgScoreReducer
 });
 
 export default myhiddenplace;

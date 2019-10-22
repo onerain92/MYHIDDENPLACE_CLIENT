@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withScriptjs } from "react-google-maps";
 import App from "../components/App/App";
 import {
   signUp,
@@ -17,6 +18,9 @@ import {
   initializeSearchedPlace,
   placeDetails,
   placeDetailsError,
+  saveComments,
+  commentErrorMsg,
+  saveScore
 } from "../actions";
 import {
   confirmUser,
@@ -27,7 +31,10 @@ import {
   uploadPlaceInfo,
   getPlaceAll,
   searchPlace,
-  getPlaceDetails
+  getPlaceDetails,
+  uploadComment,
+  getComment,
+  uploadFavoritePlace
 } from "../api";
 
 const mapStateToProps = state => {
@@ -44,7 +51,10 @@ const mapStateToProps = state => {
     isSearched: state.isSearched,
     failSearchMsg: state.failSearchMsg,
     placeDetails: state.placeDetails,
-    placeDetailsErrorMsg: state.placeDetailsErrorMsg
+    placeDetailsErrorMsg: state.placeDetailsErrorMsg,
+    comments: state.comments,
+    commentErrorMsg: state.commentErrorMsg,
+    avgScore: state.avgScore
   };
 };
 
@@ -124,11 +134,33 @@ const mapDispatchToProps = dispatch => {
           dispatch(placeDetailsError(data.placeDetailsErrorMessage));
         }
       });
+    },
+    registerComment(placeId, text, score) {
+      uploadComment(placeId, text, score).then(data => {
+        console.log(data.successCommentMessage);
+      });
+    },
+    loadComment(placeId) {
+      getComment(placeId).then(data => {
+        if(data.comments) {
+          dispatch(saveComments(data.comments));
+          dispatch(saveScore(data.avgScore));
+        } else {
+          dispatch(commentErrorMsg(data.commentErrorMessage));
+        }
+      });
+    },
+    registerFavoritePlace(placeId){
+      uploadFavoritePlace(placeId).then(data => {
+        console.log("컨테이너에서 즐겨찾기 리스트 확인: ", data);
+      })
     }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default withScriptjs(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

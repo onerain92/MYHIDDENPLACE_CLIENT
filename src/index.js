@@ -15,7 +15,12 @@ const store = createStore(myHiddenPlace);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App} />
+      <Route path="/" render={props => (
+        <App
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
+          loadingElement={<div style={{ height: `100%` }} />}
+        />
+      )} />
     </Router>
   </Provider>,
   document.getElementById("root")

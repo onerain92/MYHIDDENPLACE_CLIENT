@@ -89,6 +89,13 @@ class App extends Component {
                 onLoad={this.props.getSelectedPlace}
                 placeDetails={this.props.placeDetails}
                 isMarkerShown={true}
+                onSubmit={this.props.registerComment}
+                isAuthenticated={this.props.isAuthenticated}
+                onLoadComment={this.props.loadComment}
+                comments={this.props.comments}
+                commentErrorMsg={this.props.commentErrorMsg}
+                avgScore={this.props.avgScore}
+                registerFavoritePlace={this.props.registerFavoritePlace}
               />
             )}
           />
