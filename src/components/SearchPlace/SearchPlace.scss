@@ -1,0 +1,30 @@
+.SearchPlace {
+  .place-list-container {
+    border: 3px solid black;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      .place-list-link {
+        text-decoration: none;
+        .place-list {
+          display: inline-block;
+          margin: 1% 1%;
+          padding: 0;
+          text-align: left;
+          list-style-type: none;
+          width: 23%;
+          min-height: 260px;
+          overflow: hidden;
+          border: 1px solid black;
+          .place-image-wrapper {
+            img {
+              width: 100%;
+              height: 200px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

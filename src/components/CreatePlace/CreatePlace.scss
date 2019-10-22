@@ -1,0 +1,29 @@
+.CreatePlace {
+  border: 2px solid black;
+  .imgPreview {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  .tag-container {
+    .tag-list {
+      padding: 5px;
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      .tag {
+        display: inline-block;
+        margin-right: 5px;
+        padding: 2px;
+        border: 1px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      input {
+        border: none;
+        outline: none;
+        font-size: 14px;
+      }
+    }
+  }
+}

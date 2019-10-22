@@ -1,0 +1,57 @@
+$navigation-background-color: #0c2236;
+
+.navigation {
+  width: 100%;
+  background-color: $navigation-background-color;
+  display: flex;
+  padding: 10px 50px;
+  position: relative;
+  margin-bottom: 40px;
+  .logo-wrapper {
+    img {
+      width: 126px; //126
+      height: 83px; // 83
+    }
+  }
+  .signup-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    &:hover {
+      background-color: #e26072;
+      transition: all ease 0.5s;
+      cursor: pointer;
+    }
+  }
+  .signin-out-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    &:hover {
+      background-color: #e26072;
+      transition: all ease 0.5s;
+      cursor: pointer;
+    }
+  }
+  .create-place-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+    &:hover {
+      background-color: #e26072;
+      transition: all ease 0.5s;
+      cursor: pointer;
+    }
+  }
+  .remove-btn {
+    display: none;
+  }
+}
