@@ -122,7 +122,13 @@ export const uploadComment = (placeId, text, score) => {
 };
 
 export const uploadFavoritePlace = placeId => {
-  return api.put("/user/favorite", { placeId }).then(res => {
-    console.log("api에서 즐겨찾기 대답 확인: ", res.data);
+  return api.put(`/user/${placeId}`).then(res => {
+    return res.data.favoriteList;
+  });
+};
+
+export const removeFavoritePlace = placeId => {
+  return api.put(`/user/remove/${placeId}`).then(res => {
+    return res.data.favoriteList;
   });
 };

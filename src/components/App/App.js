@@ -96,6 +96,8 @@ class App extends Component {
                 commentErrorMsg={this.props.commentErrorMsg}
                 avgScore={this.props.avgScore}
                 registerFavoritePlace={this.props.registerFavoritePlace}
+                favoritePlace={this.props.user.favorite}
+                deleteFavoritePlace={this.props.deleteFavoritePlace}
               />
             )}
           />

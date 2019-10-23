@@ -20,7 +20,8 @@ import {
   placeDetailsError,
   saveComments,
   commentErrorMsg,
-  saveScore
+  saveScore,
+  updateFavoriteList
 } from "../actions";
 import {
   confirmUser,
@@ -34,7 +35,8 @@ import {
   getPlaceDetails,
   uploadComment,
   getComment,
-  uploadFavoritePlace
+  uploadFavoritePlace,
+  removeFavoritePlace
 } from "../api";
 
 const mapStateToProps = state => {
@@ -94,6 +96,7 @@ const mapDispatchToProps = dispatch => {
         if (data.isAuthenticated) {
           dispatch(signIn(data.user));
           dispatch(isAuthenticated(data.isAuthenticated));
+          dispatch(initializeMsg());
         } else {
           dispatch(signinError(data.signinErrorMessage));
         }
@@ -142,7 +145,7 @@ const mapDispatchToProps = dispatch => {
     },
     loadComment(placeId) {
       getComment(placeId).then(data => {
-        if(data.comments) {
+        if (data.comments) {
           dispatch(saveComments(data.comments));
           dispatch(saveScore(data.avgScore));
         } else {
@@ -150,10 +153,15 @@ const mapDispatchToProps = dispatch => {
         }
       });
     },
-    registerFavoritePlace(placeId){
+    registerFavoritePlace(placeId) {
       uploadFavoritePlace(placeId).then(data => {
-        console.log("컨테이너에서 즐겨찾기 리스트 확인: ", data);
-      })
+        dispatch(updateFavoriteList(data.favorite));
+      });
+    },
+    deleteFavoritePlace(placeId) {
+      removeFavoritePlace(placeId).then(data => {
+        dispatch(updateFavoriteList(data.favorite));
+      });
     }
   };
 };

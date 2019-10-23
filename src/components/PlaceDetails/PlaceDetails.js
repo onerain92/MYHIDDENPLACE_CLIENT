@@ -25,6 +25,7 @@ class PlaceDetails extends Component {
     this.handleScoreClick = this.handleScoreClick.bind(this);
     this.submitComment = this.submitComment.bind(this);
     this.submitFavoritePlace = this.submitFavoritePlace.bind(this);
+    this.removeFavoritePlace = this.removeFavoritePlace.bind(this);
   }
 
   componentDidMount() {
@@ -67,6 +68,13 @@ class PlaceDetails extends Component {
     this.props.registerFavoritePlace(placeId);
   };
 
+  removeFavoritePlace = event => {
+    event.preventDefault();
+
+    const placeId = this.props.match.params.place_id;
+    this.props.deleteFavoritePlace(placeId);
+  };
+
   render() {
     return (
       <div className="PlaceDetails">
@@ -84,10 +92,21 @@ class PlaceDetails extends Component {
                   <Rating initialRating={this.props.avgScore} readonly />
                 )}
               </span>
+              <span>{this.props.avgScore}점</span>
               <span>{this.props.placeDetails.created_by}</span>
             </div>
             <div className="place-favorite">
-              <MdFavoriteBorder onClick={this.submitFavoritePlace} />
+              {this.props.favoritePlace.length !== 0 ? (
+                this.props.favoritePlace.find(
+                  place => place === this.props.placeDetails._id
+                ) ? (
+                  <MdFavorite onClick={this.removeFavoritePlace} />
+                ) : (
+                  <MdFavoriteBorder onClick={this.submitFavoritePlace} />
+                )
+              ) : (
+                <MdFavoriteBorder onClick={this.submitFavoritePlace} />
+              )}
             </div>
           </div>
 

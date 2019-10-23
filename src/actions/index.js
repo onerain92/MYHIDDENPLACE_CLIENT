@@ -17,7 +17,8 @@ import {
   PLACE_DETAILS_ERROR,
   GET_COMMENTS,
   GET_COMMENTS_ERROR,
-  SAVE_AVG_SCORE
+  SAVE_AVG_SCORE,
+  UPDATE_FAVORITE
 } from "../constants/actionTypes";
 
 export const signUp = data => ({
@@ -111,4 +112,9 @@ export const commentErrorMsg = data => ({
 export const saveScore = data => ({
   type: SAVE_AVG_SCORE,
   data
-})
+});
+
+export const updateFavoriteList = data => ({
+  type: UPDATE_FAVORITE,
+  data
+});

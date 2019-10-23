@@ -18,11 +18,14 @@ import {
   FAIL_SEARCH_PLACE,
   GET_COMMENTS,
   GET_COMMENTS_ERROR,
-  SAVE_AVG_SCORE
+  SAVE_AVG_SCORE,
+  UPDATE_FAVORITE
 } from "../constants/actionTypes";
 
 const initialState = {
-  user: {},
+  user: {
+    favorite: []
+  },
   place: [],
   searchedPlace: [],
   placeDetails: {
@@ -68,6 +71,8 @@ function signinUserReducer(state = initialState.user, action) {
       return action.data;
     case IS_NOT_AUTHENTICATED:
       return {};
+    case UPDATE_FAVORITE:
+      return {...state, favorite: action.data};
     default:
       return state;
   }
@@ -88,6 +93,8 @@ function signinErrorReducer(state = initialState.signinErrorMsg, action) {
   switch (action.type) {
     case SIGNIN_ERROR:
       return action.msg;
+    case INITIALIZE_MSG:
+      return null;
     default:
       return state;
   }
