@@ -18,7 +18,10 @@ import {
   GET_COMMENTS,
   GET_COMMENTS_ERROR,
   SAVE_AVG_SCORE,
-  UPDATE_FAVORITE
+  UPDATE_FAVORITE,
+  GET_MY_PLACE,
+  REMOVE_MY_PLACE,
+  GET_MY_FAVORITE
 } from "../constants/actionTypes";
 
 export const signUp = data => ({
@@ -118,3 +121,18 @@ export const updateFavoriteList = data => ({
   type: UPDATE_FAVORITE,
   data
 });
+
+export const saveMyPlace = data => ({
+  type: GET_MY_PLACE,
+  data
+});
+
+export const myplaceSuccessMsg = data => ({
+  type: REMOVE_MY_PLACE,
+  data
+});
+
+export const saveMyFavorite = data => ({
+  type: GET_MY_FAVORITE,
+  data
+})

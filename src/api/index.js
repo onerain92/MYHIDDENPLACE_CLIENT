@@ -132,3 +132,21 @@ export const removeFavoritePlace = placeId => {
     return res.data.favoriteList;
   });
 };
+
+export const getMyPlace = userId => {
+  return api.get(`/place/myplace/${userId}`).then(res => {
+    return res.data;
+  });
+};
+
+export const removeMyPlace = myPlacdId => {
+  return api.delete(`/place/myplace/${myPlacdId}`).then(res => {
+    return res.data;
+  });
+};
+
+export const getMyFavoritePlace = userId => {
+  return api.get(`/place/favorite/${userId}`).then(res => {
+    return res.data;
+  });
+};

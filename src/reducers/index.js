@@ -19,7 +19,10 @@ import {
   GET_COMMENTS,
   GET_COMMENTS_ERROR,
   SAVE_AVG_SCORE,
-  UPDATE_FAVORITE
+  UPDATE_FAVORITE,
+  GET_MY_PLACE,
+  REMOVE_MY_PLACE,
+  GET_MY_FAVORITE
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -28,6 +31,8 @@ const initialState = {
   },
   place: [],
   searchedPlace: [],
+  myPlace: [],
+  myFavorite: [],
   placeDetails: {
     location: {
       coordinates: null
@@ -44,7 +49,8 @@ const initialState = {
   uploadPlaceMsg: null,
   uploadPlaceErrorMsg: null,
   placeDetailsErrorMsg: null,
-  commentErrorMsg:null
+  commentErrorMsg: null,
+  removeMyPlaceMsg: null
 };
 
 function signupUserReducer(state = initialState.signupSuccessMsg, action) {
@@ -72,7 +78,7 @@ function signinUserReducer(state = initialState.user, action) {
     case IS_NOT_AUTHENTICATED:
       return {};
     case UPDATE_FAVORITE:
-      return {...state, favorite: action.data};
+      return { ...state, favorite: action.data };
     default:
       return state;
   }
@@ -167,6 +173,12 @@ function placeDetailsReducer(state = initialState.placeDetails, action) {
   switch (action.type) {
     case PLACE_DETAILS:
       return action.data;
+    case INITIALIZE_MSG:
+      return {
+        location: {
+          coordinates: null
+        }
+      };
     default:
       return state;
   }
@@ -217,6 +229,33 @@ function avgScoreReducer(state = initialState.avgScore, action) {
   }
 }
 
+function myPlaceReducer(state = initialState.myPlace, action) {
+  switch (action.type) {
+    case GET_MY_PLACE:
+      return action.data;
+    default:
+      return state;
+  }
+}
+
+function removeMyPlaceReducer(state = initialState.removeMyPlaceMsg, action) {
+  switch (action.type) {
+    case REMOVE_MY_PLACE:
+      return action.data;
+    default:
+      return state;
+  }
+}
+
+function myFavoriteReducer(state = initialState.myFavorite, action) {
+  switch (action.type) {
+    case GET_MY_FAVORITE:
+      return action.data;
+    default:
+      return state;
+  }
+}
+
 const myhiddenplace = combineReducers({
   user: signinUserReducer,
   isAuthenticated: isAuthenticatedReducer,
@@ -233,7 +272,10 @@ const myhiddenplace = combineReducers({
   placeDetailsErrorMsg: placeDetailsErrorMsgReducer,
   comments: commentsReducer,
   commentErrorMsg: commentErrorMsgReducer,
-  avgScore: avgScoreReducer
+  avgScore: avgScoreReducer,
+  myPlace: myPlaceReducer,
+  removeMyPlaceMsg: removeMyPlaceReducer,
+  myFavorite: myFavoriteReducer
 });
 
 export default myhiddenplace;

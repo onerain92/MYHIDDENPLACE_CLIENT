@@ -1,7 +1,8 @@
 .Main {
   .place-list-container {
-    border: 3px solid black;
-
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 8%;
     ul {
       margin: 0;
       padding: 0;
@@ -9,14 +10,15 @@
         text-decoration: none;
         .place-list {
           display: inline-block;
+          width: 25%;
+          min-height: 300px;
           margin: 1% 1%;
           padding: 0;
           text-align: left;
           list-style-type: none;
-          width: 23%;
-          min-height: 260px;
           overflow: hidden;
           border: 1px solid black;
+          border-radius: 5px;
           .place-image-wrapper {
             img {
               width: 100%;

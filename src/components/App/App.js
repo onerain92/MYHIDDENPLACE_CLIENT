@@ -101,7 +101,19 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/mypage" render={() => <Mypage />} />
+          <Route
+            path="/mypage"
+            render={() => (
+              <Mypage
+                onLoad={this.props.loadMyPlace}
+                user={this.props.user}
+                myPlace={this.props.myPlace}
+                deleteMyPlace={this.props.deleteMyPlace}
+                loadMyFavoritePlace={this.props.loadMyFavoritePlace}
+                myFavorite={this.props.myFavorite}
+              />
+            )}
+          />
         </Switch>
       </div>
     );

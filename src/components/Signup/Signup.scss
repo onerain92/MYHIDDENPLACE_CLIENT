@@ -1,3 +1,23 @@
+$mainColor: #1b5ac2;
+$subColor: #0c2236;
+$type1: #afb1be;
+
+@mixin inputStyle {
+  label {
+    display: none;
+  }
+  input {
+    display: inline-block;
+    width: 80%;
+    margin: 10px 0px 0px 10px;
+    border: none;
+    background-color: #ffffff;
+    outline: none;
+    font-size: 20px;
+    color: $type1;
+  }
+}
+
 .Signup {
   width: 20%;
   min-height: 440px;
@@ -6,96 +26,29 @@
   top: 50%;
   left: 50%;
   padding-top: 3%;
+  border: 1px solid $subColor;
   border-radius: 5px;
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    right top,
-    color-stop(0%, #35394a),
-    color-stop(100%, #1f222e)
-  );
+  background: #ffffff;
   .signup-title {
     font-size: 20px;
     text-align: center;
-    color: #afb1be;
+    color: $subColor;
     margin-bottom: 15%;
   }
   .form-group {
     width: 100%;
-    border-top: 2px solid #383d52;
-    border-bottom: 2px solid #383d52;
-    margin-bottom: 1px;
-    background-color: #31364a;
+    border-top: 1px solid $subColor;
+    background-color: #ffffff;
   }
   .email {
-    label {
-      font-size: 0;
-      margin-top: 20%;
-      &:after {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png)
-          no-repeat center center;
-      }
-    }
-    input {
-      display: inline-block;
-      width: 80%;
-      margin: 10px 0px 0px 10px;
-      border: none;
-      background-color: #31364a;
-      outline: none;
-      font-size: 20px;
-      color: #afb1be;
-    }
+    @include inputStyle();
   }
   .password {
-    label {
-      font-size: 0;
-      &:after {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png)
-          no-repeat center center;
-      }
-    }
-    input {
-      display: inline-block;
-      width: 80%;
-      margin: 10px 0px 0px 10px;
-      border: none;
-      background-color: #31364a;
-      outline: none;
-      font-size: 20px;
-      color: #afb1be;
-    }
+    @include inputStyle();
   }
   .username {
-    label {
-      font-size: 0;
-      &:after {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background: url(../../image/id.png) no-repeat center center;
-        background-size: 16px 16px;
-      }
-    }
-    input {
-      display: inline-block;
-      width: 80%;
-      margin: 10px 0px 0px 10px;
-      border: none;
-      background-color: #31364a;
-      outline: none;
-      font-size: 20px;
-      color: #afb1be;
-    }
+    border-bottom: 1px solid $subColor;
+    @include inputStyle();
   }
   .signup-button {
     display: block;
@@ -103,14 +56,14 @@
     margin: 3%;
     padding: 3%;
     font-size: 20px;
-    color: #dc617f;
-    cursor: pointer;
+    color: $subColor;
     background-color: transparent;
-    border: 2px solid #dc617f;
+    border: 1px solid $mainColor;
     transition: all ease 0.5s;
+    cursor: pointer;
     &:hover {
-      color: white;
-      background-color: #dc617f;
+      color: #ffffff;
+      background-color: $mainColor;
     }
   }
   .errorMsg {
@@ -124,7 +77,7 @@
     margin: 4%;
     text-align: center;
     font-size: 15px;
-    color: #afb1be;
+    color: $type1;
   }
   .move {
     text-decoration: none;
@@ -133,14 +86,14 @@
       width: 94%;
       margin: 3%;
       padding: 3%;
-      text-align: center;
       font-size: 20px;
-      color: #afb1be;
-      border: 2px solid #afb1be;
+      color: $type1;
+      border: 2px solid $type1;
       transition: all ease 0.5s;
+      cursor: pointer;
       &:hover {
         color: #ffffff;
-        background-color: #afb1be;
+        background-color: $type1;
       }
     }
   }

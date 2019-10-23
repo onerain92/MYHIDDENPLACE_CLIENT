@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
+import { MdEmail, MdVpnKey, MdPerson } from "react-icons/md";
 import "./Signup.scss";
 
 class Signup extends Component {
@@ -123,48 +124,52 @@ class Signup extends Component {
         <form onSubmit={this.submitUserSignupForm}>
           <div className="form-group email">
             <label>이메일</label>
+            <MdEmail />
             <input
               type="email"
               className="form-control"
               name="email"
               value={this.state.fields.email}
-              placeholder="이메일을 입력해주세요."
+              placeholder="이메일을 입력하세요."
               onChange={this.handleInputChange}
             />
             <div className="errorMsg">{this.state.errors.email}</div>
           </div>
           <div className="form-group password">
             <label>비밀번호</label>
+            <MdVpnKey />
             <input
               type="password"
               className="form-control"
               name="password"
               value={this.state.fields.password}
-              placeholder="비밀번호를 입력해주세요"
+              placeholder="비밀번호를 입력하세요"
               onChange={this.handleInputChange}
             />
             <div className="errorMsg">{this.state.errors.password}</div>
           </div>
           <div className="form-group password">
             <label>비밀번호 확인</label>
+            <MdVpnKey />
             <input
               type="password"
               className="form-control"
               name="checkPassword"
               value={this.state.fields.checkPassword}
-              placeholder="다시 한 번 입력해주세요."
+              placeholder="다시 한 번 입력하세요."
               onChange={this.handleInputChange}
             />
             <div className="errorMsg">{this.state.errors.checkPassword}</div>
           </div>
           <div className="form-group username">
             <label>이름</label>
+            <MdPerson />
             <input
               type="text"
               className="form-control"
               name="username"
               value={this.state.fields.username}
-              placeholder="이름을 입력해주세요."
+              placeholder="이름을 입력하세요."
               onChange={this.handleInputChange}
             />
             <div className="errorMsg">{this.state.errors.username}</div>

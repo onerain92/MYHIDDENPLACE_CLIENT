@@ -21,7 +21,10 @@ import {
   saveComments,
   commentErrorMsg,
   saveScore,
-  updateFavoriteList
+  updateFavoriteList,
+  saveMyPlace,
+  myplaceSuccessMsg,
+  saveMyFavorite
 } from "../actions";
 import {
   confirmUser,
@@ -36,7 +39,10 @@ import {
   uploadComment,
   getComment,
   uploadFavoritePlace,
-  removeFavoritePlace
+  removeFavoritePlace,
+  getMyPlace,
+  removeMyPlace,
+  getMyFavoritePlace
 } from "../api";
 
 const mapStateToProps = state => {
@@ -56,7 +62,10 @@ const mapStateToProps = state => {
     placeDetailsErrorMsg: state.placeDetailsErrorMsg,
     comments: state.comments,
     commentErrorMsg: state.commentErrorMsg,
-    avgScore: state.avgScore
+    avgScore: state.avgScore,
+    myPlace: state.myPlace,
+    removeMyPlaceMsg: state.removeMyPlaceMsg,
+    myFavorite: state.myFavorite
   };
 };
 
@@ -161,6 +170,21 @@ const mapDispatchToProps = dispatch => {
     deleteFavoritePlace(placeId) {
       removeFavoritePlace(placeId).then(data => {
         dispatch(updateFavoriteList(data.favorite));
+      });
+    },
+    loadMyPlace(userId) {
+      getMyPlace(userId).then(data => {
+        dispatch(saveMyPlace(data));
+      });
+    },
+    deleteMyPlace(myPlaceId) {
+      removeMyPlace(myPlaceId).then(data => {
+        dispatch(myplaceSuccessMsg(data.deleteMyPlaceSuccessMessage));
+      });
+    },
+    loadMyFavoritePlace(userId) {
+      getMyFavoritePlace(userId).then(data => {
+        dispatch(saveMyFavorite(data));
       });
     }
   };

@@ -6,7 +6,6 @@ import PlaceMap from "../Map/PlaceMap";
 import {
   MdStar,
   MdStarBorder,
-  MdDelete,
   MdFavorite,
   MdFavoriteBorder
 } from "react-icons/md";
@@ -149,11 +148,29 @@ class PlaceDetails extends Component {
                     placeholder="저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다. 건전한 토론문화와 양질의 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 단어들은 표시가 제한됩니다."
                   />
                   <div>
-                    <Rating
+                    {/* <Rating
                       emptySymbol={<MdStarBorder />}
                       fullSymbol={<MdStar />}
                       fractions={2}
-                      onChange={rate => this.handleScoreClick(rate)}
+                      onClick={rate => this.handleScoreClick(rate)}
+                    /> */}
+                    <Rating
+                      className="rate-box"
+                      onClick={rate => this.handleScoreClick(rate)}
+                      emptySymbol={
+                        <img
+                          src="https://cdn3.iconfinder.com/data/icons/essentials-volume-i/128/star-3-512.png"
+                          className="icon"
+                          alt="icon"
+                        />
+                      }
+                      fullSymbol={
+                        <img
+                          src="https://cdn1.iconfinder.com/data/icons/vote-reward-7/24/award_reward_rate_rating_star_empty-512.png"
+                          className="icon"
+                          alt="icon"
+                        />
+                      }
                     />
                   </div>
                   <input
