@@ -1,8 +1,18 @@
+$mainColor: #1b5ac2;
+$subColor: #0c2236;
+$type1: #afb1be;
+$font: 'Noto Sans KR', sans-serif;
+
 .Main {
   .place-list-container {
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
     padding-top: 8%;
+    h2 {
+      margin-left: 10px;
+      text-align: left;
+      color: $subColor;
+    }
     ul {
       margin: 0;
       padding: 0;
@@ -10,19 +20,50 @@
         text-decoration: none;
         .place-list {
           display: inline-block;
-          width: 25%;
-          min-height: 300px;
+          width: 23%;
+          height: 340px;
           margin: 1% 1%;
           padding: 0;
           text-align: left;
           list-style-type: none;
           overflow: hidden;
-          border: 1px solid black;
+          font-family: $font;
+          border: 1px solid $type1;
           border-radius: 5px;
+          &:hover {
+            box-shadow: 0 2px 8px rgba(102,109,117,.32);
+            transform: translateY(-2px);
+          }
           .place-image-wrapper {
             img {
               width: 100%;
-              height: 200px;
+              height: 170px;
+            }
+          }
+          .place-content-wrapper {
+            padding: 20px 20px;
+            .place-location {
+              margin-bottom: 3px;
+              font-size: 13px;
+              color: $type1;
+            }
+            .place-title {
+              margin-bottom: 5px;
+              font-size: 20px;
+              color: $subColor;
+            }
+            .place-author {
+              margin-bottom: 5px;
+              font-size: 15px;
+              color: $type1;
+            }
+            .place-tag{
+              margin-bottom: 5px;
+              li {
+                display: inline-block;
+                margin-right: 5px;
+                color: $mainColor;
+              }
             }
           }
         }

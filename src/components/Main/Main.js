@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import SearchPlace from "../SearchPlace/SearchPlace";
+import { MdLocationOn } from "react-icons/md";
 import "./Main.scss";
 
 class Main extends Component {
@@ -15,6 +16,7 @@ class Main extends Component {
           <SearchPlace searchedPlace={this.props.searchedPlace} />
         ) : (
           <div className="place-list-container">
+            <h2>최근 올라온 장소</h2>
             <ul>
               {this.props.place.map(place => (
                 <NavLink
@@ -25,13 +27,24 @@ class Main extends Component {
                 >
                   <li className="place-list">
                     <div className="place-image-wrapper">
-                      <img src={place.place_picture} alt="place shot" />
+                      <img src={place.place_picture[0]} alt="place shot" />
                     </div>
                     <div className="place-content-wrapper">
-                      <div className="place-location">{place.address}</div>
+                      <div className="place-location">
+                        <MdLocationOn />
+                        {place.address}
+                      </div>
                       <div className="place-title">{place.title}</div>
                       <div className="place-author">{place.created_by}</div>
-                      <div className="place-tag">{place.tag}</div>
+                      <div className="place-tag">
+                        <ul>
+                          {place.tag.map((item, index) => (
+                            <li key={index}>
+                              <span>#{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </li>
                 </NavLink>

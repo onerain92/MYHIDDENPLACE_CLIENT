@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdLocationOn } from "react-icons/md";
 import MyFavorite from "../MyFavorite/MyFavorite";
 import "./Mypage.scss";
 
@@ -39,6 +39,7 @@ class Mypage extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="Mypage">
         <div className="Mypage-header">
@@ -64,20 +65,36 @@ class Mypage extends Component {
           />
         ) : (
           <div className="myplace-list">
+            <h2>내가 올린 장소</h2>
             <ul>
               {this.props.myPlace.map(myplace => (
-                <NavLink exact to={`/place/${myplace._id}`} key={myplace._id}>
-                  <li>
+                <NavLink
+                  exact
+                  to={`/place/${myplace._id}`}
+                  key={myplace._id}
+                  className="myplace-list-link"
+                >
+                  <li className="myplace-list">
                     <div className="myplace-image-wrapper">
                       <img src={myplace.place_picture} alt="place shot" />
                     </div>
                     <div className="myplace-content-wrapper">
                       <div className="myplace-info-box">
-                        <div className="myplace-title">{myplace.title}</div>
                         <div className="myplace-location">
+                          <MdLocationOn />
                           {myplace.address}
                         </div>
-                        <div className="myplace-tag">{myplace.tag}</div>
+                        <div className="myplace-title">{myplace.title}</div>
+
+                        <div className="myplace-tag">
+                          <ul>
+                            {myplace.tag.map((item, index) => (
+                              <li key={index}>
+                                <span>#{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                       <div className="delete-myplace">
                         <MdDelete

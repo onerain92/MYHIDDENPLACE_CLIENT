@@ -61,7 +61,9 @@ class CreatePlace extends Component {
       });
     };
 
-    reader.readAsDataURL(file);
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   handleDescriptionChange = description => {
@@ -156,27 +158,35 @@ class CreatePlace extends Component {
   render() {
     let { imagePreviewUrl } = this.state;
     let imgfilePreview = null;
-    if (imagePreviewUrl) {
-      imgfilePreview = (
-        <img className="previewImg" src={imagePreviewUrl} alt="Selected file" />
-      );
-    } else {
-      imgfilePreview = (
-        <div className="previewText">Please select an Image for Preview</div>
-      );
-    }
+    imgfilePreview = (
+      <div className="img-select-box">
+        <div className="previewBox">
+          {this.state.imagePreviewUrl ? (
+            <img
+              className="previewImg"
+              src={imagePreviewUrl}
+              alt="Selected file"
+            />
+          ) : (
+            <div className="previewText">장소 사진을 넣어주세요.</div>
+          )}
+        </div>
+        <div className="select-file-box">
+          <label htmlFor="select-file">사진 불러오기</label>
+          <input
+            type="file"
+            name="imgfile"
+            id="select-file"
+            onChange={event => this.handleImageChange(event)}
+          />
+        </div>
+      </div>
+    );
 
     return (
       <div className="CreatePlace">
         <div className="place-container">
-          <div className="imgPreview">{imgfilePreview}</div>
           <form onSubmit={event => this.submitPlaceForm(event)}>
-            <input
-              type="file"
-              name="imgfile"
-              onChange={event => this.handleImageChange(event)}
-            />
-
             <div className="place-title-wrapper">
               <label>제목</label>
               <input
@@ -187,13 +197,14 @@ class CreatePlace extends Component {
                 onChange={event => this.handleTitleChange(event)}
               />
             </div>
+            <div className="imgPreview">{imgfilePreview}</div>
             <SimpleMDE
-              label="내용"
               value={this.state.placeInfoGroup.description}
               onChange={this.handleDescriptionChange}
               options={{
                 autofocus: true,
-                spellChecker: false
+                spellChecker: false,
+                placeholder: "장소에 대해 작성해주세요.",
               }}
             />
 
@@ -211,8 +222,8 @@ class CreatePlace extends Component {
                 <div>
                   <input
                     {...getInputProps({
-                      placeholder: "장소를 입력하세요.",
-                      className: "location-search-input"
+                      placeholder: "이 장소의 위치를 알려주세요.",
+                      className: "location-search-input place-search"
                     })}
                   />
                   <div className="autocomplete-dropdown-container">
@@ -249,8 +260,8 @@ class CreatePlace extends Component {
                     className="tag"
                     onClick={this.handleTagRemove(index)}
                   >
-                    {tag}
-                    <span>(x)</span>
+                    #{tag}
+                    <span className="delete-tag-button">x</span>
                   </li>
                 ))}
                 <input
