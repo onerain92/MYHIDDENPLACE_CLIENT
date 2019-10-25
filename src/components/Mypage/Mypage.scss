@@ -46,6 +46,7 @@ $font: 'Noto Sans KR', sans-serif;
           position: relative;
           padding: 20px 20px;
           .myplace-info-box {
+            width: 95%;
             .myplace-location {
               margin-bottom: 3px;
               font-size: 13px;
@@ -68,7 +69,7 @@ $font: 'Noto Sans KR', sans-serif;
           .delete-myplace {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 10px;
             color: $subColor;
           }
         }

@@ -38,9 +38,9 @@ class Main extends Component {
                       <div className="place-author">{place.created_by}</div>
                       <div className="place-tag">
                         <ul>
-                          {place.tag.map((item, index) => (
+                          {place.tag.map((tag, index) => (
                             <li key={index}>
-                              <span>#{item}</span>
+                              <span>#{tag}</span>
                             </li>
                           ))}
                         </ul>

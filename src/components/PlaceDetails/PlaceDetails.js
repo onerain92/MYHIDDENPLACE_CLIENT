@@ -7,7 +7,11 @@ import {
   MdStar,
   MdStarBorder,
   MdFavorite,
-  MdFavoriteBorder
+  MdFavoriteBorder,
+  MdLocationOn,
+  MdPerson,
+  MdPoll,
+  MdDateRange
 } from "react-icons/md";
 import "./PlaceDetails.scss";
 
@@ -30,6 +34,11 @@ class PlaceDetails extends Component {
   componentDidMount() {
     const placeId = this.props.match.params.place_id;
     this.props.onLoad(placeId);
+    this.props.onLoadComment(placeId);
+  }
+
+  componentDidUpdate() {
+    const placeId = this.props.match.params.place_id;
     this.props.onLoadComment(placeId);
   }
 
@@ -83,25 +92,49 @@ class PlaceDetails extends Component {
               <h1 className="place-details-title">
                 {this.props.placeDetails.title}
               </h1>
-              <span>{this.props.placeDetails.address}</span>
-              <span>
+              <span className="place-details-location">
+                <MdLocationOn />
+                {this.props.placeDetails.address}
+              </span>
+              <span className="place-details-author">
+                <MdPerson />
+                {this.props.placeDetails.created_by}
+              </span>
+              <span className="place-details-rate">
                 {this.props.comments.length === 0 ? (
-                  "평점이 없습니다."
+                  <span className="place-details-no-rate">
+                    <MdPoll />
+                    평점이 없습니다 -
+                  </span>
                 ) : (
-                  <Rating initialRating={this.props.avgScore} readonly />
+                  <Rating
+                    emptySymbol={<MdStarBorder className="MdStarBorder" />}
+                    fullSymbol={<MdStar className="MdStar" />}
+                    initialRating={this.props.avgScore}
+                    className="place-details-rate-image"
+                    readonly
+                  />
                 )}
               </span>
-              <span>{this.props.avgScore}점</span>
-              <span>{this.props.placeDetails.created_by}</span>
+              <span className="place-details-score">
+                {this.props.avgScore}점
+              </span>
             </div>
+
             <div className="place-favorite">
               {this.props.favoritePlace.length !== 0 ? (
                 this.props.favoritePlace.find(
                   place => place === this.props.placeDetails._id
                 ) ? (
-                  <MdFavorite onClick={this.removeFavoritePlace} />
+                  <MdFavorite
+                    onClick={this.removeFavoritePlace}
+                    className="MdFavorite"
+                  />
                 ) : (
-                  <MdFavoriteBorder onClick={this.submitFavoritePlace} />
+                  <MdFavoriteBorder
+                    onClick={this.submitFavoritePlace}
+                    className="MdFavoriteBorder"
+                  />
                 )
               ) : (
                 <MdFavoriteBorder onClick={this.submitFavoritePlace} />
@@ -110,99 +143,102 @@ class PlaceDetails extends Component {
           </div>
 
           <div className="place-details-main">
-            <div className="place-details-picture">
-              <img
-                src={this.props.placeDetails.place_picture}
-                alt="place detail pic"
-              />
-            </div>
-            <div className="place-details-descriptoin">
-              <ReactMarkdown source={this.props.placeDetails.description} />
-            </div>
-            <div className="place-details-tags">
-              {this.props.placeDetails.tag
-                ? this.props.placeDetails.tag.map((tag, index) => (
-                    <span className="tag" key={index}>
-                      {tag}
-                    </span>
-                  ))
-                : ""}
-            </div>
-            <div className="place-details-map">
-              <PlaceMap
-                location={this.props.placeDetails.location}
-                address={this.props.placeDetails.address}
-              />
-            </div>
-          </div>
+            <div className="place-details-main-left-container">
+              <div className="place-details-picture">
+                <img
+                  src={this.props.placeDetails.place_picture}
+                  alt="place detail pic"
+                />
+              </div>
 
-          <div className="place-details-comments">
-            {this.props.isAuthenticated ? (
-              <div className="write-comments">
-                <form>
-                  <input
-                    type="text"
-                    name="content"
-                    value={this.state.commentText}
-                    onChange={event => this.handleCommentChange(event)}
-                    placeholder="저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다. 건전한 토론문화와 양질의 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 단어들은 표시가 제한됩니다."
-                  />
-                  <div>
-                    {/* <Rating
-                      emptySymbol={<MdStarBorder />}
-                      fullSymbol={<MdStar />}
-                      fractions={2}
-                      onClick={rate => this.handleScoreClick(rate)}
-                    /> */}
-                    <Rating
-                      className="rate-box"
-                      onClick={rate => this.handleScoreClick(rate)}
-                      emptySymbol={
-                        <img
-                          src="https://cdn3.iconfinder.com/data/icons/essentials-volume-i/128/star-3-512.png"
-                          className="icon"
-                          alt="icon"
-                        />
-                      }
-                      fullSymbol={
-                        <img
-                          src="https://cdn1.iconfinder.com/data/icons/vote-reward-7/24/award_reward_rate_rating_star_empty-512.png"
-                          className="icon"
-                          alt="icon"
-                        />
-                      }
-                    />
-                  </div>
-                  <input
-                    type="submit"
-                    onClick={event => this.submitComment(event)}
-                  />
-                </form>
+              <div className="place-details-map">
+                <PlaceMap
+                  location={this.props.placeDetails.location}
+                  address={this.props.placeDetails.address}
+                />
               </div>
-            ) : (
-              <div className="require-login">
-                <div>로그인 후 댓글을 작성할 수 있습니다.</div>
-                <NavLink exact to={"/signin"}>
-                  <button>로그인</button>
-                </NavLink>
+            </div>
+
+            <div className="place-details-main-right-container">
+              <div className="place-details-descriptoin">
+                <ReactMarkdown source={this.props.placeDetails.description} />
               </div>
-            )}
-            <div className="show-comments">
-              <ul>
-                {this.props.comments.length !== 0 ? (
-                  this.props.comments.map(comment => (
-                    <li key={comment._id} className="comments-list">
-                      <div className="comment-by">{comment.created_by}</div>
-                      <div className="comment-text">{comment.comment_text}</div>
-                      <div className="comment-date">
-                        {comment.created_at.slice(0, 10)}
+
+              <div className="place-details-tags">
+                {this.props.placeDetails.tag
+                  ? this.props.placeDetails.tag.map((tag, index) => (
+                      <li key={index}>
+                        <span>#{tag}</span>
+                      </li>
+                    ))
+                  : ""}
+              </div>
+
+              <div className="place-details-comments">
+                {this.props.isAuthenticated ? (
+                  <div className="write-comments">
+                    <form>
+                      <div className="write-comments-rate">
+                        <Rating
+                          initialRating={this.state.score}
+                          emptySymbol={
+                            <MdStarBorder className="MdStarBorder" />
+                          }
+                          fullSymbol={<MdStar className="MdStar" />}
+                          fractions={2}
+                          className="place-details-rate-image"
+                          onClick={rate => this.handleScoreClick(rate)}
+                        />
                       </div>
-                    </li>
-                  ))
+                      <input
+                        type="text"
+                        name="content"
+                        value={this.state.commentText}
+                        className="write-comments-text"
+                        onChange={event => this.handleCommentChange(event)}
+                        placeholder="저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다. 건전한 토론문화와 양질의 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 단어들은 표시가 제한됩니다."
+                      />
+                      <input
+                        type="submit"
+                        className="write-comments-submit"
+                        onClick={event => this.submitComment(event)}
+                      />
+                    </form>
+                  </div>
                 ) : (
-                  <div>{this.props.commentErrorMsg}</div>
+                  <div className="require-login">
+                    <NavLink exact to={"/signin"}>
+                      <button>인</button>
+                    </NavLink>
+                    <span> 후 댓글을 작성할 수 있습니다.</span>
+                  </div>
                 )}
-              </ul>
+                <div className="show-comments">
+                  <ul>
+                    {this.props.comments.length !== 0 ? (
+                      this.props.comments.map(comment => (
+                        <li key={comment._id} className="comments-list">
+                          <div className="comment-by">
+                            <MdPerson className="MdPerson" />
+                            {comment.created_by}
+                          </div>
+                          <div className="comment-text">
+                            {comment.comment_text}
+                          </div>
+                          <div className="comment-date">
+                            <MdDateRange className="MdDateRange" />
+                            {comment.created_at.slice(0, 10)}
+                          </div>
+                        </li>
+                      ))
+                    ) : (
+                      <div className="comment-error-msg">
+                        {this.props.commentErrorMsg}
+                      </div>
+                    )}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -20,7 +20,8 @@ class Mypage extends Component {
     this.props.onLoad(userId);
   }
 
-  onDeleteMyplace(myplaceId) {
+  onDeleteMyplace(event, myplaceId) {
+    event.preventDefault();
     this.props.deleteMyPlace(myplaceId);
   }
 
@@ -98,7 +99,9 @@ class Mypage extends Component {
                       </div>
                       <div className="delete-myplace">
                         <MdDelete
-                          onClick={() => this.onDeleteMyplace(myplace._id)}
+                          onClick={event =>
+                            this.onDeleteMyplace(event, myplace._id)
+                          }
                         />
                       </div>
                     </div>

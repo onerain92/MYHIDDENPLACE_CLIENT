@@ -17,7 +17,7 @@ class PlaceMap extends Component {
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     const propsChange =
       this.props.location.coordinates !== nextProps.location.coordinates;
     return propsChange;
@@ -38,7 +38,7 @@ class PlaceMap extends Component {
       : 126.978382;
 
     const GoogleMaps = withGoogleMap(props => (
-      <GoogleMap defaultCenter={{ lat, lng }} defaultZoom={13}>
+      <GoogleMap defaultCenter={{ lat, lng }} defaultZoom={15}>
         <Marker
           position={{ lat: lat, lng: lng }}
           onClick={this.handleMarkerClick}
@@ -55,8 +55,8 @@ class PlaceMap extends Component {
     return (
       <div>
         <GoogleMaps
-          containerElement={<div style={{ height: `500px`, width: "500px" }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `500px`, width: "100%" }} />}
+          mapElement={<div style={{ height: `100%`, borderRadius: `5px` }} />}
         />
       </div>
     );

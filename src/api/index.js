@@ -116,7 +116,7 @@ export const getComment = placeId => {
 };
 
 export const uploadComment = (placeId, text, score) => {
-  return api.post("/comment/register", { placeId, text, score }).then(res => {
+  return api.post("/comment", { placeId, text, score }).then(res => {
     return res.data;
   });
 };
