@@ -70,9 +70,9 @@ export const getPlaceAll = () => {
     });
 };
 
-export const uploadPlaceInfo = (tags, placeInfo) => {
+export const createPlaceInfo = (tags, placeInfo) => {
   return api
-    .post("/place/upload", { tags, placeInfo })
+    .post("/place/create", { tags, placeInfo })
     .then(res => {
       return res.data;
     })

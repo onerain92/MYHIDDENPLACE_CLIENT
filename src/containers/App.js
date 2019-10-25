@@ -32,7 +32,7 @@ import {
   signinUser,
   signoutUser,
   uploadImage,
-  uploadPlaceInfo,
+  createPlaceInfo,
   getPlaceAll,
   searchPlace,
   getPlaceDetails,
@@ -120,7 +120,7 @@ const mapDispatchToProps = dispatch => {
       uploadImage(imagefile).then(data => {
         if (data.location) {
           placeInfo.imgfile = data.location;
-          uploadPlaceInfo(tags, placeInfo).then(data => {
+          createPlaceInfo(tags, placeInfo).then(data => {
             dispatch(uploadPlace(data.successMessage));
           });
         } else {

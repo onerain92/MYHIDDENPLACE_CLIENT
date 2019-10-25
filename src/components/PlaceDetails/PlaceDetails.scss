@@ -27,15 +27,24 @@ $font: "Noto Sans KR", sans-serif;
           margin-right: 10px;
           color: $type1;
           font-size: 15px;
+          .MdLocationOn {
+            color: $type3;
+          }
         }
         .place-details-author {
           margin-right: 10px;
           color: $type1;
           font-size: 15px;
+          .MdPerson {
+            color: $mainColor;
+          }
         }
         .place-details-rate {
           margin-right: 10px;
           color: $type1;
+          .MdPoll {
+            color: $type4;
+          }
           .place-details-no-rate {
             font-size: 15px;
           }
@@ -69,7 +78,6 @@ $font: "Noto Sans KR", sans-serif;
         }
       }
     }
-
     .place-details-main {
       display: flex;
       .place-details-main-left-container {
@@ -92,7 +100,7 @@ $font: "Noto Sans KR", sans-serif;
           margin-bottom: 30px;
         }
         .place-details-tags {
-          margin-bottom: 5px;
+          margin-top: 30px;
           li {
             display: inline-block;
             margin-right: 5px;
@@ -102,7 +110,7 @@ $font: "Noto Sans KR", sans-serif;
         .place-details-comments {
           .write-comments {
             position: relative;
-            width: 90%;
+            width: 100%;
             height: 102px;
             margin: 35px 0;
             padding: 10px 0 0 10px;
@@ -161,7 +169,7 @@ $font: "Noto Sans KR", sans-serif;
               margin: 0;
               padding: 0;
               .comments-list {
-                width: 90%;
+                width: 100%;
                 text-align: left;
                 margin-bottom: 20px;
                 border-bottom: 3px double $type1;
@@ -171,6 +179,7 @@ $font: "Noto Sans KR", sans-serif;
                   color: $type1;
                   .MdPerson {
                     margin-right: 5px;
+                    color: $mainColor;
                   }
                 }
                 .comment-text {
@@ -179,12 +188,15 @@ $font: "Noto Sans KR", sans-serif;
                   color: $subColor;
                 }
                 .comment-date {
+                  margin-bottom: 3px;
                   color: $type1;
                   .MdDateRange {
                     margin-right: 5px;
+                    color: $type3;
                   }
                 }
                 .comment-error-msg {
+                  color: $subColor;
                 }
               }
             }
