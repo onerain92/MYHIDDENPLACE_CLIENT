@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import SearchPlace from "../SearchPlace/SearchPlace";
-import { MdLocationOn } from "react-icons/md";
+import { MdLocationOn, MdPerson } from "react-icons/md";
 import "./Main.scss";
 
 class Main extends Component {
@@ -31,11 +31,14 @@ class Main extends Component {
                     </div>
                     <div className="place-content-wrapper">
                       <div className="place-location">
-                        <MdLocationOn />
+                        <MdLocationOn className="MdLocationOn" />
                         {place.address}
                       </div>
                       <div className="place-title">{place.title}</div>
-                      <div className="place-author">{place.created_by}</div>
+                      <div className="place-author">
+                        <MdPerson className="MdPerson" />
+                      {place.created_by}
+                      </div>
                       <div className="place-tag">
                         <ul>
                           {place.tag.map((tag, index) => (

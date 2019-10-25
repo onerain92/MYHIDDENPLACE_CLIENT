@@ -208,7 +208,7 @@ class PlaceDetails extends Component {
                 ) : (
                   <div className="require-login">
                     <NavLink exact to={"/signin"}>
-                      <button>인</button>
+                      <button>로그인</button>
                     </NavLink>
                     <span> 후 댓글을 작성할 수 있습니다.</span>
                   </div>

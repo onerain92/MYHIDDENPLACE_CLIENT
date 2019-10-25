@@ -259,23 +259,24 @@ function myFavoriteReducer(state = initialState.myFavorite, action) {
 const myhiddenplace = combineReducers({
   user: signinUserReducer,
   isAuthenticated: isAuthenticatedReducer,
+  place: getPlaceReducer,
+  searchedPlace: getSearchedPlaceReducer,
+  isSearched: isSearchedReducer,
+  placeDetails: placeDetailsReducer,
+  comments: commentsReducer,
+  avgScore: avgScoreReducer,
+  myPlace: myPlaceReducer,
+  myFavorite: myFavoriteReducer,
+
   signinErrorMsg: signinErrorReducer,
   signupSuccessMsg: signupUserReducer,
   signupErrorMsg: signupErrorReducer,
   uploadPlaceMsg: uploadPlaceReducer,
   uploadPlaceErrorMsg: uploadPlaceErrorReducer,
-  place: getPlaceReducer,
-  searchedPlace: getSearchedPlaceReducer,
-  isSearched: isSearchedReducer,
   failSearchMsg: failSearchMsgReducer,
-  placeDetails: placeDetailsReducer,
   placeDetailsErrorMsg: placeDetailsErrorMsgReducer,
-  comments: commentsReducer,
   commentErrorMsg: commentErrorMsgReducer,
-  avgScore: avgScoreReducer,
-  myPlace: myPlaceReducer,
-  removeMyPlaceMsg: removeMyPlaceReducer,
-  myFavorite: myFavoriteReducer
+  removeMyPlaceMsg: removeMyPlaceReducer
 });
 
 export default myhiddenplace;
