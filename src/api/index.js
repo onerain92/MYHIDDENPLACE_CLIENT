@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 const api = axios.create({
-  baseURL: process.env.SERVER_ADDRESS
+  baseURL: process.env.REACT_APP_SERVER_ADDRESS
 });
 
 export const confirmUser = () => {
@@ -85,7 +85,6 @@ export const searchPlace = searchInput => {
   return api
     .get("/place/search", { params: { word: searchInput } })
     .then(res => {
-      console.log("api에서 서치드 플레이스 확인: ", res.data);
       return res.data;
     })
     .catch(err => {
@@ -95,7 +94,7 @@ export const searchPlace = searchInput => {
 
 export const getPlaceDetails = placeId => {
   return api
-    .get(`place/${placeId}`)
+    .get(`/place/${placeId}`)
     .then(res => {
       return res.data;
     })
@@ -140,7 +139,7 @@ export const getMyPlace = userId => {
 };
 
 export const removeMyPlace = myPlacdId => {
-  return api.delete(`/place/myplace/${myPlacdId}`).then(res => {
+  return api.delete(`/place/myplace/${myPlacdId}/${userId}`).then(res => {
     return res.data;
   });
 };

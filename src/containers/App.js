@@ -179,7 +179,12 @@ const mapDispatchToProps = dispatch => {
     },
     deleteMyPlace(myPlaceId) {
       removeMyPlace(myPlaceId).then(data => {
-        dispatch(myplaceSuccessMsg(data.deleteMyPlaceSuccessMessage));
+        if (data.deleteMyPlaceSuccessMessage) {
+          dispatch(myplaceSuccessMsg(data.deleteMyPlaceSuccessMessage));
+          dispatch(saveMyPlace(data.myPlaceInfo));
+        } else {
+          dispatch(saveMyPlace(data.myPlaceInfo));
+        }
       });
     },
     loadMyFavoritePlace(userId) {

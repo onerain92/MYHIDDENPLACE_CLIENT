@@ -21,8 +21,10 @@ class Mypage extends Component {
   }
 
   onDeleteMyplace(event, myplaceId) {
+    const userId = this.props.user.id;
+
     event.preventDefault();
-    this.props.deleteMyPlace(myplaceId);
+    this.props.deleteMyPlace(myplaceId, userId);
   }
 
   onToggleMyPage = event => {
