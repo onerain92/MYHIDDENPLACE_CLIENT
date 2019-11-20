@@ -177,8 +177,8 @@ const mapDispatchToProps = dispatch => {
         dispatch(saveMyPlace(data));
       });
     },
-    deleteMyPlace(myPlaceId) {
-      removeMyPlace(myPlaceId).then(data => {
+    deleteMyPlace(myPlaceId, userId) {
+      removeMyPlace(myPlaceId, userId).then(data => {
         if (data.deleteMyPlaceSuccessMessage) {
           dispatch(myplaceSuccessMsg(data.deleteMyPlaceSuccessMessage));
           dispatch(saveMyPlace(data.myPlaceInfo));

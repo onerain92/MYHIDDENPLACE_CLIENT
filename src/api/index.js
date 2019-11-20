@@ -138,7 +138,7 @@ export const getMyPlace = userId => {
   });
 };
 
-export const removeMyPlace = myPlacdId => {
+export const removeMyPlace = (myPlacdId, userId) => {
   return api.delete(`/place/myplace/${myPlacdId}/${userId}`).then(res => {
     return res.data;
   });
