@@ -4,7 +4,7 @@
 
 마이히든플레이스는 본인만이 알고 있는 장소 혹은 잘 알려지지 않은 곳을 다른 사람들과 공유할 수 있는 웹 어플리케이션입니다.
 
-<https://www.myhiddenplaces.com>
+<https://www.myhiddenplaces.com> ( 현재 사정상 서버는 내려가있는 상태입니다. )
 
 ![Myhiddenplace](myhiddenplace.gif)
 
